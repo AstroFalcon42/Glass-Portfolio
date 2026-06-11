@@ -8,32 +8,25 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#111110;
-  --fog:#F5F4F1;
-  --mid:#E8E6E1;
-  --muted:#888680;
+  --ink:#111110;--fog:#F5F4F1;--mid:#E8E6E1;--muted:#888680;
   --ff-display:'Cormorant Garamond',Georgia,serif;
   --ff-body:'Jost',sans-serif;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--ff-body);background:var(--fog);color:var(--ink);font-weight:300;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-header{
-  padding:0 40px;height:60px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid rgba(17,17,16,0.1);
-  background:var(--fog);
-  position:sticky;top:0;z-index:50;
-}
+header{padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(17,17,16,0.1);background:var(--fog);position:sticky;top:0;z-index:50}
 .site-name{font-family:var(--ff-display);font-size:20px;letter-spacing:0.02em}
 .header-email{font-size:12px;letter-spacing:0.06em;color:var(--muted)}
 .header-email:hover{color:var(--ink)}
 .back{display:block;padding:20px 40px;font-size:13px;letter-spacing:0.06em;color:var(--muted);transition:color .18s}
 .back:hover{color:var(--ink)}
+
+.mobile-top{padding:24px 20px 0;display:none}
 .piece-layout{display:grid;grid-template-columns:1fr 420px;min-height:calc(100vh - 100px)}
 .main-image-wrap{background:#1a1917;display:flex;align-items:center;justify-content:center;min-height:500px;position:sticky;top:60px;height:calc(100vh - 100px)}
 .main-image{max-width:100%;max-height:100%;object-fit:contain;display:block;cursor:zoom-in}
-.sidebar{padding:40px 36px;border-left:1px solid rgba(17,17,16,0.1);background:var(--fog);overflow-y:auto}
+.sidebar{padding:40px 36px;border-left:1px solid rgba(17,17,16,0.1);background:var(--fog);overflow-y:auto;display:flex;flex-direction:column}
 .piece-title{font-family:var(--ff-display);font-size:clamp(32px,3vw,44px);font-weight:300;line-height:1.05;margin-bottom:8px}
 .piece-year{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:32px}
 .piece-desc{font-size:15px;line-height:1.8;color:#3a3936;margin-bottom:40px}
@@ -42,10 +35,25 @@ header{
 .thumbnails{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:40px}
 .thumb{aspect-ratio:1;object-fit:cover;cursor:pointer;opacity:0.65;transition:opacity .2s;border:2px solid transparent;width:100%;display:block}
 .thumb:hover,.thumb.active{opacity:1;border-color:var(--ink)}
-.sidebar-footer{padding-top:28px;border-top:1px solid rgba(17,17,16,0.08)}
+.sidebar-footer{padding-top:28px;border-top:1px solid rgba(17,17,16,0.08);margin-top:auto}
 .commission-note{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px}
 .commission-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:400;letter-spacing:0.06em;padding:11px 20px;border:1px solid rgba(17,17,16,0.2);transition:background .18s,border-color .18s}
 .commission-link:hover{background:var(--mid);border-color:rgba(17,17,16,0.35)}
+
+@media(max-width:700px){
+  .back{padding:16px 20px}
+  .mobile-top{display:block}
+  #desktop-title{display:none}
+  .piece-layout{display:block}
+  .main-image-wrap{position:relative;top:0;height:80vw;min-height:260px;margin-top:20px;width:100%}
+  .sidebar{padding:24px 20px;border-left:none;border-top:none}
+  .piece-desc{font-size:14px;margin-bottom:28px}
+  .thumbnails{grid-template-columns:repeat(4,1fr);gap:5px}
+  .sidebar-footer{margin-top:32px}
+  header{padding:0 20px}
+  .header-email{display:none}
+}
+
 .lb{position:fixed;inset:0;background:rgba(5,5,4,0.96);z-index:200;display:none;align-items:center;justify-content:center}
 .lb.open{display:flex}
 .lb img{max-width:90vw;max-height:90vh;object-fit:contain}
@@ -65,12 +73,17 @@ header{
 
 <a class="back" href="../../index.html">&larr; All work</a>
 
+<div class="mobile-top">
+  <p class="piece-title">Anglerfish</p>
+  <p class="piece-year">2021 &middot; Handblown glass &middot; Salusa Glassworks, Prescott AZ</p>
+</div>
+
 <div class="piece-layout">
   <div class="main-image-wrap">
     <img class="main-image" id="main-img" src="Anglerfish_1.jpg" alt="Anglerfish">
   </div>
   <div class="sidebar">
-    <p class="piece-title">Anglerfish</p>
+    <p class="piece-title" id="desktop-title">Anglerfish</p>
     <p class="piece-year">2021 &middot; Handblown glass &middot; Salusa Glassworks, Prescott AZ</p>
     <p class="piece-desc">A deep-sea anglerfish rendered in handblown glass. The body is formed in dark amber and brown with white glass teeth and fins, topped with a signature bioluminescent lure in amber and yellow. Suspended mid-swim.</p>
     <div class="divider"></div>
